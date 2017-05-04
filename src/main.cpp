@@ -29,7 +29,7 @@ void check_arguments(int argc, char* argv[]) {
   } else if (argc == 3) {
     has_valid_args = true;
   } else if (argc > 3) {
-    cerr << "Too many arguments.\n" << usage_instructions << endl;
+    cerr << "Too many arguments.\n" << argc << " " << usage_instructions << endl;
   }
 
   if (!has_valid_args) {

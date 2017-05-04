@@ -65,9 +65,6 @@ public:
   ///* Augmented state dimension
   int n_aug_;
 
-  //set measurement dimension, radar can measure r, phi, and r_dot
-  int n_z_;
-  
   ///* Sigma point spreading parameter
   double lambda_;
 
@@ -76,27 +73,6 @@ public:
 
   ///* the current NIS for laser
   double NIS_laser_;
-  
-  // augumented mean vector
-  VectorXd x_aug_;
-  
-  // augumented state covariance
-  MatrixXd P_aug;
-  
-  // sigma point matrix
-  MatrixXd Xsig_aug;
-  
-  //create matrix for sigma points in measurement space
-  MatrixXd Zsig;
-  
-  //create matrix for cross correlation Tc
-  MatrixXd Tc;
-  
-  //create matrix with predicted sigma points as columns
-  MatrixXd Xsig_pred;  
-  
-  MatrixXd R_laser_;
-  MatrixXd H_laser_;  
 
   /**
    * Constructor
@@ -126,6 +102,7 @@ public:
    * @param meas_package The measurement at k+1
    */
   void UpdateLidar(MeasurementPackage meas_package);
+  void UpdateLidar_alt(MeasurementPackage meas_package);
 
   /**
    * Updates the state and the state covariance matrix using a radar measurement
