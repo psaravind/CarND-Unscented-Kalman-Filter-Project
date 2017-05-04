@@ -64,9 +64,17 @@ public:
 
   ///* Augmented state dimension
   int n_aug_;
+  int n_sig_;
 
   ///* Sigma point spreading parameter
   double lambda_;
+  
+  //measurement noise covariance matrix	
+  MatrixXd R_laser_;
+  
+  MatrixXd H_laser_;
+  
+  MatrixXd R_radar_;
 
   ///* the current NIS for radar
   double NIS_radar_;
@@ -83,6 +91,8 @@ public:
    * Destructor
    */
   virtual ~UKF();
+  
+  double Normalize(double z);
 
   /**
    * ProcessMeasurement
@@ -102,7 +112,7 @@ public:
    * @param meas_package The measurement at k+1
    */
   void UpdateLidar(MeasurementPackage meas_package);
-  void UpdateLidar_alt(MeasurementPackage meas_package);
+  void UpdateLidar_linear(MeasurementPackage meas_package);
 
   /**
    * Updates the state and the state covariance matrix using a radar measurement
